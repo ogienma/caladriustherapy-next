@@ -1,32 +1,34 @@
 'use client';
 
-import { Box, VStack,
-
- RadioCard 
-
- } from '@chakra-ui/react';
-
- const items = [
-  { value: "next", title: "Next.js" },
-  { value: "vite", title: "Vite" },
-  { value: "astro", title: "Astro" },
-]
+import {Flex, Button, Text, Box, CheckboxCards } from '@radix-ui/themes';   
+import { useState } from 'react';
 
 export default function MatchPage() {
+  const [selectedGender, setSelectedGender] = useState<string>('');
+
   return (
-    <RadioCard.Root defaultValue="next">
-    <RadioCard.Label>Select framework</RadioCard.Label>
-    <VStack align="stretch">
-      {items.map((item) => (
-        <RadioCard.Item key={item.value} value={item.value}>
-          <RadioCard.ItemHiddenInput />
-          <RadioCard.ItemControl>
-            <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-            <RadioCard.ItemIndicator />
-          </RadioCard.ItemControl>
-        </RadioCard.Item>
-      ))}
-    </VStack>
-  </RadioCard.Root>
+<Box maxWidth="600px">
+	<CheckboxCards.Root defaultValue={["1"]} columns={{ initial: "1", sm: "3" }}>
+		<CheckboxCards.Item value="1">
+			<Flex direction="column" width="100%">
+				<Text weight="bold">A1 Keyboard</Text>
+				<Text>US Layout</Text>
+			</Flex>
+		</CheckboxCards.Item>
+		<CheckboxCards.Item value="2">
+			<Flex direction="column" width="100%">
+				<Text weight="bold">Pro Mouse</Text>
+				<Text>Zero-lag wireless</Text>
+			</Flex>
+		</CheckboxCards.Item>
+		<CheckboxCards.Item value="3">
+			<Flex direction="column" width="100%">
+				<Text weight="bold">Lightning Mat</Text>
+				<Text>Wireless charging</Text>
+			</Flex>
+		</CheckboxCards.Item>
+	</CheckboxCards.Root>
+</Box>
+
   );
 } 
