@@ -61,12 +61,12 @@ export default function MatchPage() {
 
   return (
     <Flex direction="column" gap="4" pt="4">
-      <Box width="100%" style={{ maxWidth: '200px', margin: '0 auto' }}>
+      <Box width="100%" style={{ maxWidth: '217px', margin: '0 auto' }}>
         <Image
           src="/images/caladrius/horizontal-black.png"
           alt="Caladrius Logo"
-          height={44}
-          width={200}
+          height={48}
+          width={217}
           priority
         />
       </Box>
