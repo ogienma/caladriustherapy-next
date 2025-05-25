@@ -1,34 +1,36 @@
-'use client';
+"use client";
 
-import {Flex, Button, Text, Box, CheckboxCards } from '@radix-ui/themes';   
-import { useState } from 'react';
+import { Flex, Text, Box, RadioGroup, RadioCards } from "@radix-ui/themes";
+import { useState } from "react";
+import { RiArrowLeftLine } from "@remixicon/react";
 
 export default function MatchPage() {
-  const [selectedGender, setSelectedGender] = useState<string>('');
+  const [selectedGender, setSelectedGender] = useState<string>("");
 
   return (
-<Box maxWidth="600px">
-	<CheckboxCards.Root defaultValue={["1"]} columns={{ initial: "1", sm: "3" }}>
-		<CheckboxCards.Item value="1">
-			<Flex direction="column" width="100%">
-				<Text weight="bold">A1 Keyboard</Text>
-				<Text>US Layout</Text>
-			</Flex>
-		</CheckboxCards.Item>
-		<CheckboxCards.Item value="2">
-			<Flex direction="column" width="100%">
-				<Text weight="bold">Pro Mouse</Text>
-				<Text>Zero-lag wireless</Text>
-			</Flex>
-		</CheckboxCards.Item>
-		<CheckboxCards.Item value="3">
-			<Flex direction="column" width="100%">
-				<Text weight="bold">Lightning Mat</Text>
-				<Text>Wireless charging</Text>
-			</Flex>
-		</CheckboxCards.Item>
-	</CheckboxCards.Root>
-</Box>
-
+    <Flex justify="center" align="center" style={{ minHeight: "100vh" }}>
+      <Box maxWidth="600px">
+        <RadioCards.Root defaultValue="1" columns="1">
+          <RadioCards.Item value="1">
+            <Flex direction="column" width="100%">
+              <Text weight="bold">8-core CPU</Text>
+              <Text>32 GB RAM</Text>
+            </Flex>
+          </RadioCards.Item>
+          <RadioCards.Item value="2">
+            <Flex direction="column" width="100%">
+              <Text weight="bold">6-core CPU</Text>
+              <Text>24 GB RAM</Text>
+            </Flex>
+          </RadioCards.Item>
+          <RadioCards.Item value="3">
+            <Flex direction="column" width="100%">
+              <Text weight="bold">4-core CPU</Text>
+              <Text>16 GB RAM</Text>
+            </Flex>
+          </RadioCards.Item>
+        </RadioCards.Root>
+      </Box>
+    </Flex>
   );
-} 
+}
