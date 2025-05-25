@@ -70,10 +70,8 @@ export default function MatchPage() {
           priority
         />
       </Box>
-
       <Progress value={progress} size="2" />
-
-      <Box maxWidth="600px" mx="auto" width="100%">
+      <Box maxWidth="600px" mx="auto" width="100%" p="4">
         <Text size="5" weight="bold">
           {currentQuestion?.title}
         </Text>
