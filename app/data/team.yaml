@@ -19,6 +19,7 @@ members:
           Josie Rana graduated from the University of Alabama with Bachelors’ of Science in Psychology and Chemistry and a Master’s in Social Work. She provides Dialectical Behavior Therapy with fidelity to the full model standards. Josie is certified in Trauma Focused Cognitive Behavioral Therapy (TF-CBT) and Exposure and Response Prevention (ERP) therapy. She is a certified forensic evaluator for legal defendants. Josie has experience working with young adults and adults in the outpatient setting, hospital setting, and in crisis intervention.
         </em>
       </p>
+    gender: female
 
   - id: mia-dadian
     name: Mia Dadian
@@ -39,6 +40,7 @@ members:
          Mia Dadian, LCMHCA is currently pursuing her Registered Play Therapist (RPT) certificate. She has a Bachelor of Arts in Psychology from UNCA and a Master of Science in Counseling and Educational Development from UNCG. She sees children, adolescents, and adults.
        </em>
       </p>
+    gender: female
 
   - id: kiam-seymour
     name: Kiam Seymour
@@ -282,6 +284,7 @@ members:
           needs of each client.
         </em>
       </p>
+    gender: male
 
   - id: sav-raynor
     name: Sav Raynor
