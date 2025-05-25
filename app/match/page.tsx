@@ -5,7 +5,6 @@ import { useState } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import useSWR from 'swr';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 
 interface QuizOption {
   label: string;
@@ -28,7 +27,6 @@ export default function MatchPage() {
   const { data: questions = [], isLoading } = useSWR<QuizQuestion[]>('/api/quiz', fetcher);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const { theme } = useTheme();
 
   const handleAnswer = (value: string) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -62,10 +60,10 @@ export default function MatchPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
-    <Flex direction="column" gap="4" pt="4" style={{ color: '#000' }}>
+    <Flex direction="column" gap="4" pt="4">
       <Box width="100%" style={{ maxWidth: '217px', margin: '0 auto' }}>
         <Image
-          src={theme === 'dark' ? "/images/caladrius/horizontal-white.png" : "/images/caladrius/horizontal-black.png"}
+          src="/images/caladrius/horizontal-black.png"
           alt="Caladrius Logo"
           height={48}
           width={217}
