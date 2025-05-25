@@ -1,0 +1,6 @@
+@import "@radix-ui/themes/styles.css";
+
+.radix-themes {
+	--brand-color: #fff000 !important;
+	--default-font-family: var(--font-main) !important;
+}
