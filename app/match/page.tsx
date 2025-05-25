@@ -65,7 +65,7 @@ export default function MatchPage() {
         <Image
           src="/images/caladrius/horizontal-black.png"
           alt="Caladrius Logo"
-          height={100}
+          height={44}
           width={200}
           priority
         />
