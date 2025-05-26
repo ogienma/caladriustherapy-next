@@ -8,8 +8,6 @@ export interface TeamMember {
   populations?: string[];
   credentials?: string[];
   // Additional fields from Provider interface
-  letters?: string;
   title?: string;
   image?: string;
-  accepted_patient_types?: string[];
 } 

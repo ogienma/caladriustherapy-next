@@ -15,7 +15,7 @@ export default function Header4({ scroll, isMobileMenu, handleMobileMenu }) {
 							</li>
 							<li className="text-2">
 								<div className="title text-2">Support 24/7:</div>
-								<div className=" text-3 fw-6"><Link href="/#">themesflat@gmail.com</Link></div>
+								<div className=" text-3 fw-6"><Link href="/#">hello@caladriustherapy.com</Link></div>
 							</li>
 						</ul>
 					</div>

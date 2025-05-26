@@ -223,7 +223,7 @@ export default function OffcanvasMobileMenu({ isMobileMenu, handleMobileMenu }) 
 								Call Us Now: <span className="number">1-555-678-8888</span>
 							</li>
 							<li>
-								Support 24/7: <Link href="/#">themesflat@gmail.com</Link>
+								Support 24/7: <Link href="/#">hello@caladriustherapy.com</Link>
 							</li>
 						</ul>
 					</div>

@@ -9,10 +9,11 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
 				<div className="wrap-top-bar">
 					<div className="top-bar-left">
 						<ul className="top-info">
-							<li className="text-2"> <i className="icon-MapPin" />101 E 129th St, East Chicago, IN 46312, US</li>
+							<li className="text-2"> <i className="icon-MapPin" />200 Queens Road, Suite 300
+Charlotte NC 28204</li>
 							<li className="text-2">
 								<i className="icon-Envelope
-                      " /><Link href="/#">themesflat@gmail.com</Link>
+                      " /><Link href="/#">hello@caladriustherapy.com</Link>
 							</li>
 						</ul>
 						<div className=" tf-dropdown-sort tf-languages" data-bs-toggle="dropdown">

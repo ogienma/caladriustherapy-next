@@ -63,7 +63,7 @@ export default function Footer2() {
 									</p>
 									<ul className="footer-info">
 										<li>Office: 1234 Fashion Street, Suite 567, New York, United States</li>
-										<li>Support 24/7: <Link href="/#">themesflat@gmail.com</Link></li>
+										<li>Support 24/7: <Link href="/#">hello@caladriustherapy.com</Link></li>
 										<li>Call Us Now: 1-555-678-8888</li>
 									</ul>
 									<ul className="tf-social">

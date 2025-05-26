@@ -26,9 +26,10 @@ export default function ContactUs() {
 											</p>
 										</div>
 										<ul className="list-info">
-											<li><i className="icon-Envelope" /> <Link href="/#">themesflat@gmail.com</Link></li>
-											<li><i className="icon-PhoneCall" />1-333-345-6868</li>
-											<li><i className="icon-MapPin" />101 E 129th St, East Chicago, IN 46312, US
+											<li><i className="icon-Envelope" /> <Link href="/#">hello@caladriustherapy.com</Link></li>
+											<li><i className="icon-PhoneCall" />1-704-980-3082</li>
+											<li><i className="icon-MapPin" />200 Queens Road, Suite 300
+Charlotte NC 28204
 											</li>
 										</ul>
 										<Link href="/#" className="tf-btn-link z-5">
