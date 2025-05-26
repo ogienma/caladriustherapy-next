@@ -10,6 +10,7 @@ import {
   Progress,
   Separator,
   Select,
+  CheckboxCards,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
@@ -47,10 +48,10 @@ export default function MatchPage() {
     TeamMember[]
   >("/api/team-members", fetcher);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [matchingMembers, setMatchingMembers] = useState<TeamMember[]>([]);
 
-  const handleAnswer = (value: string) => {
+  const handleAnswer = (value: string | string[]) => {
     const currentQuestion = questions[currentQuestionIndex];
     setAnswers((prev) => ({
       ...prev,
@@ -58,7 +59,7 @@ export default function MatchPage() {
     }));
   };
 
-  const updateMatchingMembers = (newAnswers: Record<string, string>) => {
+  const updateMatchingMembers = (newAnswers: Record<string, string | string[]>) => {
     const matching = teamMembers.filter((member) => {
       if (!member.isProvider) {
         return false;
@@ -66,10 +67,25 @@ export default function MatchPage() {
 
       return questions.every((question) => {
         const answer = newAnswers[question.id];
-        if (
-          !answer ||
-          question.options.find((opt) => opt.value === answer)?.skip_filter
-        ) {
+        if (!answer) {
+          return true;
+        }
+
+        if (question.type === "checkboxcards") {
+          const selectedValues = answer as string[];
+          if (selectedValues.length === 0) {
+            return true;
+          }
+          const memberValue = member[question.match_key as keyof TeamMember];
+          if (question.match_mode === "contains_any") {
+            return Array.isArray(memberValue)
+              ? selectedValues.some((value) => memberValue.includes(value))
+              : selectedValues.includes(memberValue as string);
+          }
+          return true;
+        }
+
+        if (question.options.find((opt) => opt.value === answer)?.skip_filter) {
           return true;
         }
 
@@ -125,17 +141,17 @@ export default function MatchPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   const renderQuestionInput = (question: QuizQuestion) => {
-    const currentValue = answers[question.id] || "";
+    const currentValue = answers[question.id] || (question.type === "checkboxcards" ? [] : "");
 
     switch (question.type) {
       case "select":
         return (
           <Select.Root
-            value={currentValue}
+            value={currentValue as string}
             onValueChange={handleAnswer}
           >
-            <Select.Trigger style={{ width: "100%" }} />
-            <Select.Content >
+            <Select.Trigger style={{ width: "100%" }} placeholder="Select your payment option..." />
+            <Select.Content style={{ width: "var(--radix-select-trigger-width)" }}>
               <Select.Group>
                 {question.options.map((option) => (
                   <Select.Item key={option.value} value={option.value}>
@@ -150,7 +166,7 @@ export default function MatchPage() {
       case "radiocards":
         return (
           <RadioCards.Root
-            value={currentValue}
+            value={currentValue as string}
             onValueChange={handleAnswer}
             columns="1"
           >
@@ -165,8 +181,21 @@ export default function MatchPage() {
         );
 
       case "checkboxcards":
-        // TODO: Implement checkbox cards when needed
-        return null;
+        return (
+          <CheckboxCards.Root
+            value={currentValue as string[]}
+            onValueChange={handleAnswer}
+            columns={{ initial: "1", sm: "2" }}
+          >
+            {question.options.map((option) => (
+              <CheckboxCards.Item key={option.value} value={option.value}>
+                <Flex direction="column" width="100%">
+                  <Text weight="bold">{option.label}</Text>
+                </Flex>
+              </CheckboxCards.Item>
+            ))}
+          </CheckboxCards.Root>
+        );
 
       default:
         return null;

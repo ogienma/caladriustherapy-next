@@ -12,28 +12,28 @@ questions:
       - label: "Self-Pay / Out-of-Pocket"
         value: "Self-Pay / Out-of-Pocket"
         skip_filter: true
+      - label: "Aetna"
+        value: "Aetna"
+      - label: "Alliance Health"
+        value: "Alliance Health"
+      - label: "AmeriHealth Caritas"
+        value: "AmeriHealth Caritas"
       - label: "Blue Cross Blue Shield (BCBS)"
         value: "Blue Cross Blue Shield (BCBS)"
+      - label: "Carolina Complete Health"
+        value: "Carolina Complete Health"
+      - label: "Cigna"
+        value: "Cigna"
+      - label: "Healthy Blue"
+        value: "Healthy Blue"
+      - label: "Partners Health Management"
+        value: "Partners Health Management"
+      - label: "Trillium Health Resources"
+        value: "Trillium Health Resources"
       - label: "UnitedHealthcare"
         value: "UnitedHealthcare"
       - label: "UnitedHealthcare Community Plan"
         value: "UnitedHealthcare Community Plan"
-      - label: "Healthy Blue"
-        value: "Healthy Blue"
-      - label: "Aetna"
-        value: "Aetna"
-      - label: "Cigna"
-        value: "Cigna"
-      - label: "AmeriHealth Caritas"
-        value: "AmeriHealth Caritas"
-      - label: "Partners Health Management"
-        value: "Partners Health Management"
-      - label: "Alliance Health"
-        value: "Alliance Health"
-      - label: "Carolina Complete Health"
-        value: "Carolina Complete Health"
-      - label: "Trillium Health Resources"
-        value: "Trillium Health Resources"
       - label: "WellCare"
         value: "WellCare"
       - label: "Other"
@@ -87,3 +87,124 @@ questions:
         value: "In-person"
       - label: "Telehealth"
         value: "Telehealth"
+
+  - id: therapist_specialties
+    title: "What would you like your therapist to specialize in?"
+    type: checkboxcards
+    match_key: specialties
+    match_mode: contains_any
+    options:
+      - label: ADHD
+        value: ADHD
+      - label: Animal-Assisted Therapy
+        value: Animal-Assisted Therapy
+      - label: Anti-Colonial Approach
+        value: Anti-Colonial Approach
+      - label: Anxiety
+        value: Anxiety
+      - label: Athletes & Sports Performance
+        value: Athletes & Sports Performance
+      - label: Attachment-Based Therapy
+        value: Attachment-Based Therapy
+      - label: Autism Support
+        value: Autism Support
+      - label: Behavioral Addictions
+        value: Behavioral Addictions
+      - label: Betrayal Trauma and Affair Recovery
+        value: Betrayal Trauma and Affair Recovery
+      - label: Bipolar Disorder
+        value: Bipolar Disorder
+      - label: Borderline Personality Disorder
+        value: Borderline Personality Disorder
+      - label: Brainspotting
+        value: Brainspotting
+      - label: Child-Centered Play Therapy
+        value: Child-Centered Play Therapy
+      - label: Child-Parent Relationship Therapy (CPRT)
+        value: Child-Parent Relationship Therapy (CPRT)
+      - label: Cognitive Behavioral Therapy (CBT)
+        value: Cognitive Behavioral Therapy (CBT)
+      - label: Conflict Avoidance
+        value: Conflict Avoidance
+      - label: Couples Therapy
+        value: Couples Therapy
+      - label: Culturally Responsive Therapy
+        value: Culturally Responsive Therapy
+      - label: Depression
+        value: Depression
+      - label: Dialectical Behavior Therapy (DBT)
+        value: Dialectical Behavior Therapy (DBT)
+      - label: Disordered Eating
+        value: Disordered Eating
+      - label: Disordered Eating
+        value: Disordered Eating
+      - label: Domestic Violence Support
+        value: Domestic Violence Support
+      - label: Eating Disorders and Body Image
+        value: Eating Disorders and Body Image
+      - label: Eye Movement Desensitization and Reprocessing (EMDR)
+        value: Eye Movement Desensitization and Reprocessing (EMDR)
+      - label: Gottman Method
+        value: Gottman Method
+      - label: Grief and Loss
+        value: Grief and Loss
+      - label: Identity Exploration and Acceptance
+        value: Identity Exploration and Acceptance
+      - label: Internal Family Systems (IFS)
+        value: Internal Family Systems (IFS)
+      - label: Kink-Affirming
+        value: Kink-Affirming
+      - label: LGBTQIA+ Affirming
+        value: LGBTQIA+ Affirming
+      - label: Life Transitions
+        value: Life Transitions
+      - label: Marital Counseling
+        value: Marital Counseling
+      - label: Non-Monogamy Affirming
+        value: Non-Monogamy Affirming
+      - label: Obsessive-Compulsive Disorder (OCD)
+        value: Obsessive-Compulsive Disorder (OCD)
+      - label: Parent Coaching
+        value: Parent Coaching
+      - label: Perinatal Mental Health
+        value: Perinatal Mental Health
+      - label: Phobias
+        value: Phobias
+      - label: Polyvagal Theory-Informed
+        value: Polyvagal Theory-Informed
+      - label: Psychodynamic Therapy
+        value: Psychodynamic Therapy
+      - label: Psychosis and Thought Disorders
+        value: Psychosis and Thought Disorders
+      - label: Registered Play Therapy
+        value: Registered Play Therapy
+      - label: Reunification Therapy
+        value: Reunification Therapy
+      - label: Sandtray Therapy
+        value: Sandtray Therapy
+      - label: Self-Esteem
+        value: Self-Esteem
+      - label: Sex Therapy
+        value: Sex Therapy
+      - label: Sex Worker Affirming
+        value: Sex Worker Affirming
+      - label: Somatic Experiencing
+        value: Somatic Experiencing
+      - label: Spanish-Speaking Therapist
+        value: Spanish-Speaking Therapist
+      - label: Stress Management
+        value: Stress Management
+      - label: Substance Use
+        value: Substance Use
+      - label: TAC-Trained Adoption Competency
+        value: TAC-Trained Adoption Competency
+      - label: Toxic Family Dynamics
+        value: Toxic Family Dynamics
+      - label: Trauma Recovery
+        value: Trauma Recovery
+      - label: Trauma-Informed Care
+        value: Trauma-Informed Care
+      - label: Trauma-Focused CBT (TF-CBT)
+        value: Trauma-Focused CBT (TF-CBT)
+      - label: Triple P Parenting
+        value: Triple P Parenting
