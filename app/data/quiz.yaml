@@ -22,8 +22,6 @@ questions:
         value: "Blue Cross Blue Shield (BCBS)"
       - label: "Carolina Complete Health"
         value: "Carolina Complete Health"
-      - label: "Cigna"
-        value: "Cigna"
       - label: "Healthy Blue"
         value: "Healthy Blue"
       - label: "Partners Health Management"
@@ -36,8 +34,9 @@ questions:
         value: "UnitedHealthcare Community Plan"
       - label: "WellCare"
         value: "WellCare"
-      - label: "Other"
-        value: "Other"
+      - label: "Other Insurance (Out-of-Network)"
+        value: "Other Insurance (Out-of-Network)"
+        skip_filter: true
 
   - id: therapist_populations
     title: "Who is the therapy for?"
@@ -126,16 +125,12 @@ questions:
         value: Cognitive Behavioral Therapy (CBT)
       - label: Conflict Avoidance
         value: Conflict Avoidance
-      - label: Couples Therapy
-        value: Couples Therapy
       - label: Culturally Responsive Therapy
         value: Culturally Responsive Therapy
       - label: Depression
         value: Depression
       - label: Dialectical Behavior Therapy (DBT)
         value: Dialectical Behavior Therapy (DBT)
-      - label: Disordered Eating
-        value: Disordered Eating
       - label: Disordered Eating
         value: Disordered Eating
       - label: Domestic Violence Support
@@ -194,16 +189,12 @@ questions:
         value: Spanish-Language Therapy
       - label: Stress Management
         value: Stress Management
-      - label: Substance Use
-        value: Substance Use
-      - label: TAC-Trained Adoption Competency
-        value: TAC-Trained Adoption Competency
+      - label: Trained Adoption Competency (TAC)
+        value: Trained Adoption Competency (TAC)
       - label: Toxic Family Dynamics
         value: Toxic Family Dynamics
       - label: Trauma Recovery
         value: Trauma Recovery
-      - label: Trauma-Informed Care
-        value: Trauma-Informed Care
       - label: Trauma-Focused CBT (TF-CBT)
         value: Trauma-Focused CBT (TF-CBT)
       - label: Triple P Parenting
