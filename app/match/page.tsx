@@ -9,6 +9,7 @@ import {
   Button,
   Progress,
   Separator,
+  Select,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
@@ -26,7 +27,7 @@ interface QuizOption {
 interface QuizQuestion {
   id: string;
   title: string;
-  type: string;
+  type: "radiocards" | "select" | "checkboxcards";
   match_key: string;
   match_mode: string;
   options: QuizOption[];
@@ -123,6 +124,55 @@ export default function MatchPage() {
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
+  const renderQuestionInput = (question: QuizQuestion) => {
+    const currentValue = answers[question.id] || "";
+
+    switch (question.type) {
+      case "select":
+        return (
+          <Select.Root
+            value={currentValue}
+            onValueChange={handleAnswer}
+          >
+            <Select.Trigger style={{ width: "100%" }} />
+            <Select.Content >
+              <Select.Group>
+                {question.options.map((option) => (
+                  <Select.Item key={option.value} value={option.value}>
+                    {option.label}
+                  </Select.Item>
+                ))}
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
+        );
+
+      case "radiocards":
+        return (
+          <RadioCards.Root
+            value={currentValue}
+            onValueChange={handleAnswer}
+            columns="1"
+          >
+            {question.options.map((option) => (
+              <RadioCards.Item key={option.value} value={option.value}>
+                <Flex direction="column" width="100%">
+                  <Text weight="bold">{option.label}</Text>
+                </Flex>
+              </RadioCards.Item>
+            ))}
+          </RadioCards.Root>
+        );
+
+      case "checkboxcards":
+        // TODO: Implement checkbox cards when needed
+        return null;
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <Flex
       direction="column"
@@ -144,19 +194,7 @@ export default function MatchPage() {
           {currentQuestion?.title}
         </Text>
         <Box mt="4">
-          <RadioCards.Root
-            value={answers[currentQuestion?.id] || ""}
-            onValueChange={handleAnswer}
-            columns="1"
-          >
-            {currentQuestion?.options.map((option) => (
-              <RadioCards.Item key={option.value} value={option.value}>
-                <Flex direction="column" width="100%">
-                  <Text weight="bold">{option.label}</Text>
-                </Flex>
-              </RadioCards.Item>
-            ))}
-          </RadioCards.Root>
+          {renderQuestionInput(currentQuestion)}
         </Box>
         <Flex justify="between" mt="4">
           <Button

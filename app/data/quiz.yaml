@@ -5,7 +5,7 @@ questions:
 
   - id: therapist_payment_options
     title: "Which insurance or payment option would you like to use?"
-    type: single
+    type: select
     match_key: paymentOptions
     match_mode: contains_any
     options:
@@ -41,7 +41,7 @@ questions:
 
   - id: therapist_populations
     title: "Who is the therapy for?"
-    type: single
+    type: radiocards
     match_key: populations
     match_mode: contains_any
     options:
@@ -60,7 +60,7 @@ questions:
 
   - id: therapist_gender
     title: "What gender would you prefer in a provider?"
-    type: single
+    type: radiocards
     match_key: gender
     match_mode: equals
     options:
@@ -76,7 +76,7 @@ questions:
 
   - id: therapist_appointment_modes
     title: "Do you have a preference for in-person or telehealth therapy?"
-    type: single
+    type: radiocards
     match_key: appointmentModes
     match_mode: contains_any
     options:
