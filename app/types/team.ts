@@ -10,6 +10,7 @@ export interface TeamMember {
   appointmentModes?: string[];
   paymentOptions?: string[];
   specialties?: string[];
+  availability: string;
   // Additional fields from Provider interface
   image?: string;
 } 

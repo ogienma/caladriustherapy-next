@@ -51,6 +51,7 @@ interface TeamMemberFields {
     isProvider: boolean;
     paymentOptions: string[];
     specialties: string[];
+    availability: string;
   };
 }
 
@@ -73,6 +74,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         'fields.appointmentModes',
         'fields.paymentOptions',
         'fields.specialties',
+        'fields.availability',
       ],
       include: 1,
     });
@@ -89,6 +91,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       isProvider: item.fields.isProvider,
       paymentOptions: item.fields.paymentOptions || [],
       specialties: item.fields.specialties || [],
+      availability: item.fields.availability || '',
     } as TeamMember));
   } catch (error) {
     console.error('Error fetching team members:', error);
