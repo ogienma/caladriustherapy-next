@@ -11,6 +11,7 @@ import {
   Separator,
   Select,
   CheckboxCards,
+  IconButton,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
@@ -185,7 +186,7 @@ export default function MatchPage() {
           <CheckboxCards.Root
             value={currentValue as string[]}
             onValueChange={handleAnswer}
-            columns={{ initial: "1", sm: "2" }}
+            columns={{ initial: "1", sm: "1" }}
           >
             {question.options.map((option) => (
               <CheckboxCards.Item key={option.value} value={option.value}>
@@ -209,14 +210,24 @@ export default function MatchPage() {
       p="4"
       style={{ backgroundColor: "white", minHeight: "100vh" }}
     >
-      <Box width="100%" style={{ maxWidth: "217px", margin: "0 auto" }}>
-        <Image
-          src="/images/caladrius/horizontal-black.png"
-          alt="Caladrius Logo"
-          height={48}
-          width={217}
-        />
-      </Box>
+      <Flex align="center" justify="between" width="100%">
+        <IconButton
+          variant="soft"
+          onClick={handlePrevious}
+          disabled={currentQuestionIndex === 0}
+        >
+          <RiArrowLeftLine />
+        </IconButton>
+        <Box style={{ maxWidth: "217px" }}>
+          <Image
+            src="/images/caladrius/horizontal-black.png"
+            alt="Caladrius Logo"
+            height={48}
+            width={217}
+          />
+        </Box>
+        <Box width="40px" /> {/* Spacer to balance the layout */}
+      </Flex>
       <Progress value={progress} size="2" style={{ maxHeight: "6px" }} />
       <Box maxWidth="600px" mx="auto" width="100%">
         <Text size="5" weight="bold">
@@ -225,15 +236,7 @@ export default function MatchPage() {
         <Box mt="4">
           {renderQuestionInput(currentQuestion)}
         </Box>
-        <Flex justify="between" mt="4">
-          <Button
-            variant="soft"
-            onClick={handlePrevious}
-            disabled={currentQuestionIndex === 0}
-          >
-            <RiArrowLeftLine />
-            Previous
-          </Button>
+        <Flex justify="end" mt="4">
           <Button
             variant="soft"
             onClick={handleNext}

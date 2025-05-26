@@ -89,7 +89,7 @@ questions:
         value: "Telehealth"
 
   - id: therapist_specialties
-    title: "What would you like your therapist to specialize in?"
+    title: "What would you like your provider to specialize in?"
     type: checkboxcards
     match_key: specialties
     match_mode: contains_any
@@ -102,8 +102,8 @@ questions:
         value: Anti-Colonial Approach
       - label: Anxiety
         value: Anxiety
-      - label: Athletes & Sports Performance
-        value: Athletes & Sports Performance
+      - label: Athletes and Sports Performance
+        value: Athletes and Sports Performance
       - label: Attachment-Based Therapy
         value: Attachment-Based Therapy
       - label: Autism Support
@@ -160,8 +160,8 @@ questions:
         value: Life Transitions
       - label: Marital Counseling
         value: Marital Counseling
-      - label: Non-Monogamy Affirming
-        value: Non-Monogamy Affirming
+      - label: Non-Monogamy-Affirming
+        value: Non-Monogamy-Affirming
       - label: Obsessive-Compulsive Disorder (OCD)
         value: Obsessive-Compulsive Disorder (OCD)
       - label: Parent Coaching
@@ -186,12 +186,12 @@ questions:
         value: Self-Esteem
       - label: Sex Therapy
         value: Sex Therapy
-      - label: Sex Worker Affirming
-        value: Sex Worker Affirming
+      - label: Sex Worker-Affirming
+        value: Sex Worker-Affirming
       - label: Somatic Experiencing
         value: Somatic Experiencing
-      - label: Spanish-Speaking Therapist
-        value: Spanish-Speaking Therapist
+      - label: Spanish-Language Therapy
+        value: Spanish-Language Therapy
       - label: Stress Management
         value: Stress Management
       - label: Substance Use
@@ -208,3 +208,14 @@ questions:
         value: Trauma-Focused CBT (TF-CBT)
       - label: Triple P Parenting
         value: Triple P Parenting
+
+  - id: therapist_availability
+    title: "When are you hoping to start therapy?"
+    type: radiocards
+    match_key: availability
+    match_mode: equals
+    options:
+      - label: As soon as possible
+        value: Immediate
+      - label: I'm willing to wait for the right fit
+        value: Waitlist
