@@ -24,11 +24,8 @@ interface QuizQuestion {
 }
 
 const fetcher = async (url: string) => {
-  console.log('Fetching:', url);
   const res = await fetch(url);
-  console.log('Response status:', res.status);
   const data = await res.json();
-  console.log('Response data:', data);
   return data;
 };
 
@@ -39,14 +36,6 @@ export default function MatchPage() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [matchingMembers, setMatchingMembers] = useState<TeamMember[]>([]);
 
-  useEffect(() => {
-    console.log('State update:', {
-      questions,
-      isLoadingQuestions,
-      teamMembers,
-      isLoadingTeamMembers
-    });
-  }, [questions, isLoadingQuestions, teamMembers, isLoadingTeamMembers]);
 
   const handleAnswer = (value: string) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -109,7 +98,7 @@ export default function MatchPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
-    <Flex direction="column" gap="4" pt="4">
+    <Flex direction="column" gap="4" p="4" style={{ backgroundColor: 'white', minHeight: '100vh' }}>
       <Box width="100%" style={{ maxWidth: '217px', margin: '0 auto' }}>
         <Image
           src="/images/caladrius/horizontal-black.png"
@@ -119,7 +108,7 @@ export default function MatchPage() {
         />
       </Box>
 
-      <Progress value={progress} size="2" />
+      <Progress value={progress} size="2" style={{ maxHeight: '6px' }} />
 
       <Box maxWidth="600px" mx="auto" width="100%">
         <Text size="5" weight="bold">
