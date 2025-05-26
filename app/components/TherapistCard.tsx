@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, Flex, IconButton, Text, Tooltip } from "@radix-ui/themes";
+import { Avatar, Badge, Box, Card, Flex, IconButton, Text, Tooltip } from "@radix-ui/themes";
 import { TeamMember } from "../types/team";
 import { RiHourglassLine } from "@remixicon/react";
 
@@ -22,20 +22,18 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
             />
             <Box>
               <Text as="div" size="2" weight="bold">
-                {therapist.name}
+                <Flex gap="2">
+                  {therapist.name}
+                  {therapist.availability.toLowerCase() === "waitlist" && (
+                    <Badge color="gray" size="1" radius="full">Waitlist</Badge>
+                  )}
+                </Flex>
               </Text>
               <Text as="div" size="2" color="gray">
                 {therapist.credentials.join(", ")}
               </Text>
             </Box>
           </Flex>
-          {therapist.availability.toLowerCase() === "waitlist" && (
-            <Tooltip content="This therapist currently has a waitlist">
-              <IconButton radius="full" variant="ghost">
-                <RiHourglassLine className="text-gray-300" size={20} />
-              </IconButton>
-            </Tooltip>
-          )}
         </Flex>
       </Card>
     </Box>

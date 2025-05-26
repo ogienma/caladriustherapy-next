@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import useSWR from "swr";
 import Image from "next/image";
-import { TeamMembers } from "@/app/components/TeamMembers";
+import { Therapists } from "@/app/components/Therapists";
 import { TeamMember } from "@/app/types/team";
 
 interface QuizOption {
@@ -246,7 +246,7 @@ export default function MatchPage() {
         <Box width="40px" /> {/* Spacer to balance the layout */}
       </Flex>
       <Progress value={progress} size="2" style={{ maxHeight: "6px" }} />
-      <Box maxWidth="600px" mx="auto" width="100%">
+      <Box maxWidth="664px" mx="auto" width="100%">
         <Text size="5" weight="bold">
           {currentQuestion?.title}
         </Text>
@@ -264,19 +264,7 @@ export default function MatchPage() {
           </Button>
         </Flex>
         <Box mt="8">
-          {matchingMembers.length > 0 ? (
-            <TeamMembers members={matchingMembers} />
-          ) : (
-            <Flex direction="column" gap="3" align="center" py="6">
-              <Text size="4" weight="bold" align="center">
-                No matches found — but we're here to help
-              </Text>
-              <Text size="3" color="gray" align="center">
-                It looks like no therapists currently meet all of your preferences.
-                Please <a href="mailto:hello@caladriustherapy.com" className="text-blue-600 hover:underline">contact us</a> and our team will gladly assist you in finding the right fit.
-              </Text>
-            </Flex>
-          )}
+          <Therapists members={matchingMembers} />
         </Box>
       </Box>
     </Flex>
