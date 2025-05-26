@@ -23,7 +23,7 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
               {therapist.name}
             </Text>
             <Text as="div" size="2" color="gray">
-              {therapist.populations.join(", ")}
+              {therapist.credentials.join(", ")}
             </Text>
           </Box>
         </Flex>

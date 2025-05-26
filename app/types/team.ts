@@ -5,4 +5,5 @@ export interface TeamMember {
   headshot: string;
   gender: string;
   populations: string[];
+  credentials: string[];
 } 

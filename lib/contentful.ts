@@ -15,6 +15,7 @@ interface TeamMemberFields extends EntrySkeletonType {
     gender: string;
     populations: string[];
     headshot?: Asset;
+    credentials: string[];
   };
 }
 
@@ -135,7 +136,7 @@ interface TeamMemberEntry extends Entry<TeamMemberFields> {
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
   try {
-    const { items } = await client.getEntries({
+    const { items } = await client.getEntries<Entry<TeamMemberFields>>({
       content_type: 'teamMember',
       select: [
         'fields.name',
@@ -143,6 +144,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         'fields.populations',
         'fields.email',
         'fields.headshot',
+        'fields.credentials',
       ],
       include: 1,
     });
@@ -154,6 +156,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       gender: item.fields.gender,
       populations: item.fields.populations,
       headshot: item.fields.headshot?.fields?.file?.url || '',
+      credentials: item.fields.credentials || [],
     }));
   } catch (error) {
     console.error('Error fetching team members:', error);
