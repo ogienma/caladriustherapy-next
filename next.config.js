@@ -6,7 +6,11 @@ const nextConfig = {
       use: 'yaml-loader'
     });
     return config;
+  },
+  images: { 
+    domains: ['images.ctfassets.net']   // Contentful's CDN
   }
 }
 
 module.exports = nextConfig
+

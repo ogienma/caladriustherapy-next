@@ -9,31 +9,23 @@ questions:
       - label: No preference
         value: any
         skip_filter: true
-      - label: Female
-        value: female
-      - label: Male
-        value: male
-      - label: Non-binary
-        value: non_binary
+      - label: "Female"
+        value: "Female"
+      - label: "Male"
+        value: "Male"
+      - label: "Non-binary"
+        value: "Non-binary"
 
   # description: "Select the gender of the therapist you prefer."
   # visibility: "if: {answerOf:'patient_type', in:['adult']}"
 
-  - id: patient_type
-    title: "What kind of patient is this for?"
+  - id: therapist_populations
+    title: "What type of service are you looking for?"
     type: single
-    match_key: accepted_patient_types
+    match_key: populations
     match_mode: contains_any
     options:
-      - label: "Young Child (0-5)"
-        value: young_child
-      - label: "Child (6-10)"
-        value: child
-      - label: "Young Adolescent (11-13)"
-        value: young_adolescent
-      - label: "Teen (14-17)"
-        value: teen
       - label: "Adult (18+)"
-        value: adult
+        value: "Adult (18+)"
       - label: "Couple"
-        value: couple
+        value: "Couple"

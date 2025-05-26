@@ -1,11 +1,12 @@
 "use client";
 
 import { Flex, Text, Box, Card, RadioCards, Button, Progress, Separator } from "@radix-ui/themes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import useSWR from 'swr';
 import Image from 'next/image';
-import { TeamMembers } from '../components/TeamMembers';
+import { TeamMembers } from '@/app/components/TeamMembers';
+import { TeamMember } from '@/app/types/team';
 
 interface QuizOption {
   label: string;
@@ -22,60 +23,15 @@ interface QuizQuestion {
   options: QuizOption[];
 }
 
-interface TeamMember {
-  id: string;
-  name: string;
-  letters: string;
-  title: string;
-  image: string;
-  email: string;
-  gender?: string;
-  accepted_patient_types?: string[];
-}
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function MatchPage() {
   const { data: questions = [], isLoading: isLoadingQuestions } = useSWR<QuizQuestion[]>('/api/quiz', fetcher);
+  const { data: teamMembers = [], isLoading: isLoadingTeamMembers } = useSWR<TeamMember[]>('/api/team-members', fetcher);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-
-  // Convert answers to the format expected by useProviders
-  const quizAnswers = Object.entries(answers).map(([questionId, value]) => {
-    const question = questions.find(q => q.id === questionId);
-    return {
-      questionId,
-      value,
-      matchKey: question?.match_key || '',
-      matchMode: question?.match_mode as 'equals' | 'contains_any'
-    };
-  });
-
-  // Fetch and filter providers
-  const { data: providers = [], isLoading: isLoadingProviders } = useSWR<TeamMember[]>('/api/providers', fetcher);
-
-  const filteredProviders = providers.filter((provider) => {
-    return quizAnswers.every((answer) => {
-      // Skip if the provider doesn't have the property
-      if (!(answer.matchKey in provider)) {
-        return false;
-      }
-
-      const providerValue = provider[answer.matchKey as keyof TeamMember];
-      
-      if (answer.matchMode === 'equals') {
-        return providerValue === answer.value;
-      } else if (answer.matchMode === 'contains_any') {
-        // For arrays like accepted_patient_types
-        if (Array.isArray(providerValue)) {
-          return providerValue.includes(answer.value);
-        }
-        return false;
-      }
-      
-      return true;
-    });
-  });
+  const [matchingMembers, setMatchingMembers] = useState<TeamMember[]>([]);
 
   const handleAnswer = (value: string) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -83,6 +39,29 @@ export default function MatchPage() {
       ...prev,
       [currentQuestion.id]: value
     }));
+  };
+
+  const updateMatchingMembers = (newAnswers: Record<string, string>) => {
+    const matching = teamMembers.filter(member => {
+      return questions.every(question => {
+        const answer = newAnswers[question.id];
+        if (!answer || question.options.find(opt => opt.value === answer)?.skip_filter) {
+          return true;
+        }
+
+        const memberValue = member[question.match_key as keyof TeamMember];
+        if (question.match_mode === 'equals') {
+          return memberValue === answer;
+        } else if (question.match_mode === 'contains_any') {
+          return Array.isArray(memberValue) 
+            ? memberValue.some((value: string) => value === answer)
+            : memberValue === answer;
+        }
+        return true;
+      });
+    });
+
+    setMatchingMembers(matching);
   };
 
   const handleNext = () => {
@@ -97,10 +76,16 @@ export default function MatchPage() {
     }
   };
 
-  if (isLoadingQuestions) {
+  useEffect(() => {
+    if (teamMembers.length > 0 && questions.length > 0) {
+      updateMatchingMembers(answers);
+    }
+  }, [answers, teamMembers, questions]);
+
+  if (isLoadingQuestions || isLoadingTeamMembers) {
     return (
       <Flex direction="column" gap="4" p="4" style={{ minHeight: "100vh" }} align="center" justify="center">
-        <Text size="5">Loading quiz...</Text>
+        <Text size="5">Loading...</Text>
       </Flex>
     );
   }
@@ -116,7 +101,6 @@ export default function MatchPage() {
           alt="Caladrius Logo"
           height={48}
           width={217}
-          priority
         />
       </Box>
 
@@ -161,16 +145,7 @@ export default function MatchPage() {
         </Flex>
 
         <Box mt="8">
-          <Text size="5" weight="bold" mb="4">
-            Matching Providers
-          </Text>
-          {isLoadingProviders ? (
-            <Text size="5" weight="medium" color="gray" align="center">
-              Loading providers...
-            </Text>
-          ) : (
-            <TeamMembers members={filteredProviders} />
-          )}
+          <TeamMembers members={matchingMembers} />
         </Box>
       </Box>
     </Flex>
