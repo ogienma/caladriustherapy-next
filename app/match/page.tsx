@@ -26,13 +26,19 @@ interface QuizOption {
   skip_filter?: boolean;
 }
 
+interface QuizCategory {
+  category: string;
+  options: QuizOption[];
+}
+
 interface QuizQuestion {
   id: string;
   title: string;
   type: "radiocards" | "select" | "checkboxcards";
   match_key: string;
   match_mode: string;
-  options: QuizOption[];
+  options?: QuizOption[];
+  categories?: QuizCategory[];
 }
 
 const fetcher = async (url: string) => {
@@ -86,7 +92,7 @@ export default function MatchPage() {
           return true;
         }
 
-        if (question.options.find((opt) => opt.value === answer)?.skip_filter) {
+        if (question.options?.find((opt) => opt.value === answer)?.skip_filter) {
           return true;
         }
 
@@ -154,7 +160,7 @@ export default function MatchPage() {
             <Select.Trigger style={{ width: "100%" }} placeholder="Select your payment option..." />
             <Select.Content style={{ width: "var(--radix-select-trigger-width)" }}>
               <Select.Group>
-                {question.options.map((option) => (
+                {question.options?.map((option) => (
                   <Select.Item key={option.value} value={option.value}>
                     {option.label}
                   </Select.Item>
@@ -171,7 +177,7 @@ export default function MatchPage() {
             onValueChange={handleAnswer}
             columns="1"
           >
-            {question.options.map((option) => (
+            {question.options?.map((option) => (
               <RadioCards.Item key={option.value} value={option.value}>
                 <Flex direction="column" width="100%">
                   <Text weight="bold">{option.label}</Text>
@@ -183,19 +189,30 @@ export default function MatchPage() {
 
       case "checkboxcards":
         return (
-          <CheckboxCards.Root
-            value={currentValue as string[]}
-            onValueChange={handleAnswer}
-            columns={{ initial: "1", sm: "1" }}
-          >
-            {question.options.map((option) => (
-              <CheckboxCards.Item key={option.value} value={option.value}>
-                <Flex direction="column" width="100%">
-                  <Text weight="bold">{option.label}</Text>
-                </Flex>
-              </CheckboxCards.Item>
+          <Flex direction="column" gap="6">
+            {question.categories?.map((category) => (
+              <Box key={category.category}>
+                <Box mb="3">
+                <Text size="2" color="gray" style={{ textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {category.category}
+                </Text>
+                </Box>
+                <CheckboxCards.Root
+                  value={currentValue as string[]}
+                  onValueChange={handleAnswer}
+                  columns={{ initial: "1", sm: "1" }}
+                >
+                  {category.options.map((option) => (
+                    <CheckboxCards.Item key={option.value} value={option.value}>
+                      <Flex direction="column" width="100%">
+                        <Text weight="bold">{option.label}</Text>
+                      </Flex>
+                    </CheckboxCards.Item>
+                  ))}
+                </CheckboxCards.Root>
+              </Box>
             ))}
-          </CheckboxCards.Root>
+          </Flex>
         );
 
       default:
@@ -246,9 +263,20 @@ export default function MatchPage() {
             <RiArrowRightLine />
           </Button>
         </Flex>
-
         <Box mt="8">
-          <TeamMembers members={matchingMembers} />
+          {matchingMembers.length > 0 ? (
+            <TeamMembers members={matchingMembers} />
+          ) : (
+            <Flex direction="column" gap="3" align="center" py="6">
+              <Text size="4" weight="bold" align="center">
+                No matches found — but we're here to help
+              </Text>
+              <Text size="3" color="gray" align="center">
+                It looks like no therapists currently meet all of your preferences.
+                Please <a href="mailto:hello@caladriustherapy.com" className="text-blue-600 hover:underline">contact us</a> and our team will gladly assist you in finding the right fit.
+              </Text>
+            </Flex>
+          )}
         </Box>
       </Box>
     </Flex>
