@@ -9,7 +9,7 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
   const headshotUrl = therapist.headshot ? `https:${therapist.headshot}` : undefined;
 
   return (
-    <Box maxWidth="240px">
+    <Box>
       <Card>
         <Flex gap="3" align="center">
           <Avatar

@@ -18,7 +18,7 @@ export function TeamMembers({ members }: TeamMembersProps) {
   }
 
   return (
-    <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap="4">
+    <Grid columns={{ initial: "1", sm: "1", md: "2" }} gap="4">
       {members.map((member) => (
         <TherapistCard key={member.id} therapist={member} />
       ))}
