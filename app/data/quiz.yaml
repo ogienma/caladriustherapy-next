@@ -2,92 +2,92 @@ questions:
   # description: "Select the gender of the therapist you prefer."
   # visibility: "if: {answerOf:'patient_type', in:['adult']}"
 
-  # - id: therapist_payment_options
-  #   title: "Which insurance or payment option would you like to use?"
-  #   type: select
-  #   match_key: paymentOptions
-  #   match_mode: contains_any
-  #   options:
-  #     - label: "Self-Pay / Out-of-Pocket"
-  #       value: "Self-Pay / Out-of-Pocket"
-  #       skip_filter: true
-  #     - label: "Aetna"
-  #       value: "Aetna"
-  #     - label: "Alliance Health"
-  #       value: "Alliance Health"
-  #     - label: "AmeriHealth Caritas"
-  #       value: "AmeriHealth Caritas"
-  #     - label: "Blue Cross Blue Shield (BCBS)"
-  #       value: "Blue Cross Blue Shield (BCBS)"
-  #     - label: "Carolina Complete Health"
-  #       value: "Carolina Complete Health"
-  #     - label: "Healthy Blue"
-  #       value: "Healthy Blue"
-  #     - label: "Partners Health Management"
-  #       value: "Partners Health Management"
-  #     - label: "Trillium Health Resources"
-  #       value: "Trillium Health Resources"
-  #     - label: "UnitedHealthcare"
-  #       value: "UnitedHealthcare"
-  #     - label: "UnitedHealthcare Community Plan"
-  #       value: "UnitedHealthcare Community Plan"
-  #     - label: "WellCare"
-  #       value: "WellCare"
-  #     - label: "Other Insurance (Out-of-Network)"
-  #       value: "Other Insurance (Out-of-Network)"
-  #       skip_filter: true
+  - id: therapist_payment_options
+    title: "Which insurance or payment option would you like to use?"
+    type: select
+    match_key: paymentOptions
+    match_mode: contains_any
+    options:
+      - label: "Self-Pay / Out-of-Pocket"
+        value: "Self-Pay / Out-of-Pocket"
+        skip_filter: true
+      - label: "Aetna"
+        value: "Aetna"
+      - label: "Alliance Health"
+        value: "Alliance Health"
+      - label: "AmeriHealth Caritas"
+        value: "AmeriHealth Caritas"
+      - label: "Blue Cross Blue Shield (BCBS)"
+        value: "Blue Cross Blue Shield (BCBS)"
+      - label: "Carolina Complete Health"
+        value: "Carolina Complete Health"
+      - label: "Healthy Blue"
+        value: "Healthy Blue"
+      - label: "Partners Health Management"
+        value: "Partners Health Management"
+      - label: "Trillium Health Resources"
+        value: "Trillium Health Resources"
+      - label: "UnitedHealthcare"
+        value: "UnitedHealthcare"
+      - label: "UnitedHealthcare Community Plan"
+        value: "UnitedHealthcare Community Plan"
+      - label: "WellCare"
+        value: "WellCare"
+      - label: "Other Insurance (Out-of-Network)"
+        value: "Other Insurance (Out-of-Network)"
+        skip_filter: true
 
-  # - id: therapist_populations
-  #   title: "Who is the therapy for?"
-  #   type: radiocards
-  #   match_key: populations
-  #   match_mode: contains_any
-  #   options:
-  #     - label: "Young Child (5 or younger)"
-  #       value: "Young Child (5 or younger)"
-  #     - label: "Child (6-10)"
-  #       value: "Child (6-10)"
-  #     - label: "Young Adolescent (11-13)"
-  #       value: "Young Adolescent (11-13)"
-  #     - label: "Teen (14-17)"
-  #       value: "Teen (14-17)"
-  #     - label: "Adult (18+)"
-  #       value: "Adult (18+)"
-  #     - label: "Couple"
-  #       value: "Couple"
+  - id: therapist_populations
+    title: "Who is the therapy for?"
+    type: radiocards
+    match_key: populations
+    match_mode: contains_any
+    options:
+      - label: "Young Child (5 or younger)"
+        value: "Young Child (5 or younger)"
+      - label: "Child (6-10)"
+        value: "Child (6-10)"
+      - label: "Young Adolescent (11-13)"
+        value: "Young Adolescent (11-13)"
+      - label: "Teen (14-17)"
+        value: "Teen (14-17)"
+      - label: "Adult (18+)"
+        value: "Adult (18+)"
+      - label: "Couple"
+        value: "Couple"
 
-  # - id: therapist_gender
-  #   title: "What gender would you prefer in a provider?"
-  #   type: radiocards
-  #   match_key: gender
-  #   match_mode: equals
-  #   options:
-  #     - label: "No preference"
-  #       value: "No preference"
-  #       skip_filter: true
-  #     - label: "Female"
-  #       value: "Female"
-  #     - label: "Male"
-  #       value: "Male"
-  #     - label: "Non-binary"
-  #       value: "Non-binary"
+  - id: therapist_gender
+    title: "What gender would you prefer in a therapist?"
+    type: radiocards
+    match_key: gender
+    match_mode: equals
+    options:
+      - label: "No preference"
+        value: "No preference"
+        skip_filter: true
+      - label: "Female"
+        value: "Female"
+      - label: "Male"
+        value: "Male"
+      - label: "Non-binary"
+        value: "Non-binary"
 
-  # - id: therapist_appointment_modes
-  #   title: "Do you have a preference for in-person or telehealth therapy?"
-  #   type: radiocards
-  #   match_key: appointmentModes
-  #   match_mode: contains_any
-  #   options:
-  #     - label: "No preference"
-  #       value: "No preference"
-  #       skip_filter: true
-  #     - label: "In-person"
-  #       value: "In-person"
-  #     - label: "Telehealth"
-  #       value: "Telehealth"
+  - id: therapist_appointment_modes
+    title: "Do you have a preference for in-person or telehealth therapy?"
+    type: radiocards
+    match_key: appointmentModes
+    match_mode: contains_any
+    options:
+      - label: "No preference"
+        value: "No preference"
+        skip_filter: true
+      - label: "In-person"
+        value: "In-person"
+      - label: "Telehealth"
+        value: "Telehealth"
 
   - id: therapist_specialties
-    title: "What would you like your provider to specialize in?"
+    title: "What would you like your therapist to specialize in?"
     type: checkboxcards
     match_key: specialties
     match_mode: contains_any
