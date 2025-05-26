@@ -23,8 +23,14 @@ interface QuizQuestion {
   options: QuizOption[];
 }
 
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  console.log('Fetching:', url);
+  const res = await fetch(url);
+  console.log('Response status:', res.status);
+  const data = await res.json();
+  console.log('Response data:', data);
+  return data;
+};
 
 export default function MatchPage() {
   const { data: questions = [], isLoading: isLoadingQuestions } = useSWR<QuizQuestion[]>('/api/quiz', fetcher);
@@ -32,6 +38,15 @@ export default function MatchPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [matchingMembers, setMatchingMembers] = useState<TeamMember[]>([]);
+
+  useEffect(() => {
+    console.log('State update:', {
+      questions,
+      isLoadingQuestions,
+      teamMembers,
+      isLoadingTeamMembers
+    });
+  }, [questions, isLoadingQuestions, teamMembers, isLoadingTeamMembers]);
 
   const handleAnswer = (value: string) => {
     const currentQuestion = questions[currentQuestionIndex];

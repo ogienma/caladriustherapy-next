@@ -7,7 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "sass": "sass --watch public/assets/scss/main.scss:public/assets/css/main.css"
+        "sass": "sass --watch public/assets/scss/main.scss:public/assets/css/main.css",
+        "ctf:types": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
     },
     "dependencies": {
         "@radix-ui/themes": "^3.2.1",
@@ -32,6 +33,7 @@
         "contentful-typescript-codegen": "^3.4.0",
         "postcss": "^8.5.3",
         "tailwindcss": "^4.1.7",
+        "ts-node": "^10.9.2",
         "typescript": "5.8.3",
         "yaml-loader": "^0.8.1"
     }
