@@ -154,10 +154,10 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       name: item.fields.name,
       email: item.fields.email,
       gender: item.fields.gender,
-      populations: item.fields.populations,
+      populations: item.fields.populations || [],
       headshot: item.fields.headshot?.fields?.file?.url || '',
       credentials: item.fields.credentials || [],
-    }));
+    } as TeamMember));
   } catch (error) {
     console.error('Error fetching team members:', error);
     throw error;
