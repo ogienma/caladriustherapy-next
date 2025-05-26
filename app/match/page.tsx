@@ -1,12 +1,21 @@
 "use client";
 
-import { Flex, Text, Box, Card, RadioCards, Button, Progress, Separator } from "@radix-ui/themes";
+import {
+  Flex,
+  Text,
+  Box,
+  Card,
+  RadioCards,
+  Button,
+  Progress,
+  Separator,
+} from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
-import useSWR from 'swr';
-import Image from 'next/image';
-import { TeamMembers } from '@/app/components/TeamMembers';
-import { TeamMember } from '@/app/types/team';
+import useSWR from "swr";
+import Image from "next/image";
+import { TeamMembers } from "@/app/components/TeamMembers";
+import { TeamMember } from "@/app/types/team";
 
 interface QuizOption {
   label: string;
@@ -30,34 +39,44 @@ const fetcher = async (url: string) => {
 };
 
 export default function MatchPage() {
-  const { data: questions = [], isLoading: isLoadingQuestions } = useSWR<QuizQuestion[]>('/api/quiz', fetcher);
-  const { data: teamMembers = [], isLoading: isLoadingTeamMembers } = useSWR<TeamMember[]>('/api/team-members', fetcher);
+  const { data: questions = [], isLoading: isLoadingQuestions } = useSWR<
+    QuizQuestion[]
+  >("/api/quiz", fetcher);
+  const { data: teamMembers = [], isLoading: isLoadingTeamMembers } = useSWR<
+    TeamMember[]
+  >("/api/team-members", fetcher);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [matchingMembers, setMatchingMembers] = useState<TeamMember[]>([]);
 
-
   const handleAnswer = (value: string) => {
     const currentQuestion = questions[currentQuestionIndex];
-    setAnswers(prev => ({
+    setAnswers((prev) => ({
       ...prev,
-      [currentQuestion.id]: value
+      [currentQuestion.id]: value,
     }));
   };
 
   const updateMatchingMembers = (newAnswers: Record<string, string>) => {
-    const matching = teamMembers.filter(member => {
-      return questions.every(question => {
+    const matching = teamMembers.filter((member) => {
+      if (!member.isProvider) {
+        return false;
+      }
+
+      return questions.every((question) => {
         const answer = newAnswers[question.id];
-        if (!answer || question.options.find(opt => opt.value === answer)?.skip_filter) {
+        if (
+          !answer ||
+          question.options.find((opt) => opt.value === answer)?.skip_filter
+        ) {
           return true;
         }
 
         const memberValue = member[question.match_key as keyof TeamMember];
-        if (question.match_mode === 'equals') {
+        if (question.match_mode === "equals") {
           return memberValue === answer;
-        } else if (question.match_mode === 'contains_any') {
-          return Array.isArray(memberValue) 
+        } else if (question.match_mode === "contains_any") {
+          return Array.isArray(memberValue)
             ? memberValue.some((value: string) => value === answer)
             : memberValue === answer;
         }
@@ -70,13 +89,13 @@ export default function MatchPage() {
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prev => prev - 1);
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
@@ -88,7 +107,14 @@ export default function MatchPage() {
 
   if (isLoadingQuestions || isLoadingTeamMembers) {
     return (
-      <Flex direction="column" gap="4" p="4" style={{ minHeight: "100vh" }} align="center" justify="center">
+      <Flex
+        direction="column"
+        gap="4"
+        p="4"
+        style={{ minHeight: "100vh" }}
+        align="center"
+        justify="center"
+      >
         <Text size="5">Loading...</Text>
       </Flex>
     );
@@ -98,8 +124,13 @@ export default function MatchPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
-    <Flex direction="column" gap="4" p="4" style={{ backgroundColor: 'white', minHeight: '100vh' }}>
-      <Box width="100%" style={{ maxWidth: '217px', margin: '0 auto' }}>
+    <Flex
+      direction="column"
+      gap="4"
+      p="4"
+      style={{ backgroundColor: "white", minHeight: "100vh" }}
+    >
+      <Box width="100%" style={{ maxWidth: "217px", margin: "0 auto" }}>
         <Image
           src="/images/caladrius/horizontal-black.png"
           alt="Caladrius Logo"
@@ -107,9 +138,7 @@ export default function MatchPage() {
           width={217}
         />
       </Box>
-
-      <Progress value={progress} size="2" style={{ maxHeight: '6px' }} />
-
+      <Progress value={progress} size="2" style={{ maxHeight: "6px" }} />
       <Box maxWidth="600px" mx="auto" width="100%">
         <Text size="5" weight="bold">
           {currentQuestion?.title}

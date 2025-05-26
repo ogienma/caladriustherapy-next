@@ -47,6 +47,9 @@ interface TeamMemberFields {
     populations: string[];
     headshot?: Asset;
     credentials: string[];
+    appointmentModes: string[];
+    isProvider: boolean;
+    paymentOptions: string[];
   };
 }
 
@@ -60,11 +63,14 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       content_type: 'teamMember',
       select: [
         'fields.name',
-        'fields.gender',
-        'fields.populations',
         'fields.email',
         'fields.headshot',
         'fields.credentials',
+        'fields.isProvider',
+        'fields.gender',
+        'fields.populations',
+        'fields.appointmentModes',
+        'fields.paymentOptions',
       ],
       include: 1,
     });
@@ -77,6 +83,9 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       populations: item.fields.populations || [],
       headshot: item.fields.headshot?.fields?.file?.url || '',
       credentials: item.fields.credentials || [],
+      appointmentModes: item.fields.appointmentModes || [],
+      isProvider: item.fields.isProvider,
+      paymentOptions: item.fields.paymentOptions || [],
     } as TeamMember));
   } catch (error) {
     console.error('Error fetching team members:', error);
