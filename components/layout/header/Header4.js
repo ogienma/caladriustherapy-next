@@ -11,7 +11,7 @@ export default function Header4({ scroll, isMobileMenu, handleMobileMenu }) {
 						<ul className="top-info">
 							<li className="text-2">
 								<div className="title text-2">Call Us Now:</div>
-								<div className=" text-3 fw-6">1-555-678-8888</div>
+								<div className=" text-3 fw-6">1-704-980-3082</div>
 							</li>
 							<li className="text-2">
 								<div className="title text-2">Support 24/7:</div>

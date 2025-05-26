@@ -220,7 +220,7 @@ export default function OffcanvasMobileMenu({ isMobileMenu, handleMobileMenu }) 
 						</Link>
 						<ul className="mb-info">
 							<li>
-								Call Us Now: <span className="number">1-555-678-8888</span>
+								Call Us Now: <span className="number">1-704-980-3082</span>
 							</li>
 							<li>
 								Support 24/7: <Link href="/#">hello@caladriustherapy.com</Link>

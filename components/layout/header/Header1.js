@@ -32,7 +32,7 @@ Charlotte NC 28204</li>
 					</div>
 					<div className="top-bar-right">
 						<ul className="list">
-							<li><i className="icon-PhoneCall" />1-555-678-8888</li>
+							<li><i className="icon-PhoneCall" />1-704-980-3082</li>
 							<li>
 								<ul className="tf-social style-1">
 									<li><Link href="/#">

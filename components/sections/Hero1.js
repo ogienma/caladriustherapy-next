@@ -23,7 +23,7 @@ export default function Hero1() {
 										<Link className="tf-btn style-default btn-color-secondary pd-28" href="/contact-us">
 											<span>Book a Consultation <i className="icon-ArrowRight" /></span>
 										</Link>
-										<p className="h6 phone">Or Call Us: <span>1-555-678-8888</span> </p>
+										<p className="h6 phone">Or Call Us: <span>1-704-980-3082</span> </p>
 									</div>
 								</div>
 							</div>

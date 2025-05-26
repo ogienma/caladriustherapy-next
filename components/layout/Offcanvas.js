@@ -225,7 +225,7 @@ export default function OffcanvasMobileMenu() {
 						</Link>
 						<ul className="mb-info">
 							<li>
-								Call Us Now: <span className="number">1-555-678-8888</span>
+								Call Us Now: <span className="number">1-704-980-3082</span>
 							</li>
 							<li>
 								Email Us: <span className="mail">help@healingy.com</span>
