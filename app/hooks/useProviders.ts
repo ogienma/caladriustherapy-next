@@ -1,15 +1,5 @@
 import useSWR from 'swr';
-
-interface TeamMember {
-  id: string;
-  name: string;
-  letters: string;
-  title: string;
-  image: string;
-  email: string;
-  gender?: string;
-  accepted_patient_types?: string[];
-}
+import { TeamMember } from '@/app/types/team';
 
 interface QuizAnswer {
   questionId: string;

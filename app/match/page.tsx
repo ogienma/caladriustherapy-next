@@ -94,7 +94,7 @@ export default function MatchPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
-    <Flex direction="column" gap="4" pt="4" style={{ backgroundColor: 'white', minHeight: '100vh' }}>
+    <Flex direction="column" gap="4" pt="4">
       <Box width="100%" style={{ maxWidth: '217px', margin: '0 auto' }}>
         <Image
           src="/images/caladrius/horizontal-black.png"
