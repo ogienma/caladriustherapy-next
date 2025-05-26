@@ -2,8 +2,8 @@ export interface TeamMember {
   id: string;
   name: string;
   email: string;
-  headshot: string;
+  headshot?: string;
   gender: string;
-  populations: string[];
-  credentials: string[];
+  populations?: string[];
+  credentials?: string[];
 } 
