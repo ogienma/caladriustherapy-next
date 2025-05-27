@@ -90,7 +90,7 @@ questions:
     title: "What would you like your therapist to specialize in?"
     type: checkboxcards
     match_key: specialties
-    match_mode: contains_any
+    match_mode: contains_all
     categories:
       - category: Treatment Methods and Modalities
         options:

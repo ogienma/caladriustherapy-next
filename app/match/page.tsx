@@ -57,6 +57,7 @@ export default function MatchPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [matchingMembers, setMatchingMembers] = useState<TeamMember[]>([]);
+  const [showResults, setShowResults] = useState(false);
 
   const handleAnswer = (value: string | string[]) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -88,6 +89,10 @@ export default function MatchPage() {
             return Array.isArray(memberValue)
               ? selectedValues.some((value) => memberValue.includes(value))
               : selectedValues.includes(memberValue as string);
+          } else if (question.match_mode === "contains_all") {
+            return Array.isArray(memberValue)
+              ? selectedValues.every((value) => memberValue.includes(value))
+              : selectedValues.includes(memberValue as string);
           }
           return true;
         }
@@ -103,6 +108,10 @@ export default function MatchPage() {
           return Array.isArray(memberValue)
             ? memberValue.some((value: string) => value === answer)
             : memberValue === answer;
+        } else if (question.match_mode === "contains_all") {
+          return Array.isArray(memberValue)
+            ? memberValue.includes(answer as string)
+            : memberValue === answer;
         }
         return true;
       });
@@ -114,12 +123,15 @@ export default function MatchPage() {
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      setShowResults(true);
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
+      setShowResults(false);
     }
   };
 
@@ -231,38 +243,53 @@ export default function MatchPage() {
         <IconButton
           variant="soft"
           onClick={handlePrevious}
-          disabled={currentQuestionIndex === 0}
+          disabled={currentQuestionIndex === 0 && !showResults}
         >
           <RiArrowLeftLine />
         </IconButton>
         <Box style={{ maxWidth: "217px" }}>
-          <Image
-            src="/images/caladrius/horizontal-black.png"
-            alt="Caladrius Logo"
-            height={48}
-            width={217}
-          />
+          <a href="https://caladriustherapy.com" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/images/caladrius/horizontal-black.png"
+              alt="Caladrius Logo"
+              height={48}
+              width={217}
+            />
+          </a>
         </Box>
         <Box width="40px" /> {/* Spacer to balance the layout */}
       </Flex>
-      <Progress value={progress} size="2" style={{ maxHeight: "6px" }} />
+      {!showResults && <Progress value={progress} size="2" style={{ maxHeight: "6px" }} />}
       <Box maxWidth="664px" mx="auto" width="100%">
-        <Text size="5" weight="bold">
-          {currentQuestion?.title}
-        </Text>
-        <Box mt="4">
-          {renderQuestionInput(currentQuestion)}
-        </Box>
-        <Flex justify="end" mt="4">
-          <Button
-            variant="soft"
-            onClick={handleNext}
-            disabled={currentQuestionIndex === questions.length - 1}
-          >
-            Next
-            <RiArrowRightLine />
-          </Button>
-        </Flex>
+        {!showResults ? (
+          <>
+            <Text size="5" weight="bold">
+              {currentQuestion?.title}
+            </Text>
+            <Box mt="4">
+              {renderQuestionInput(currentQuestion)}
+            </Box>
+            <Flex justify="end" mt="4">
+              <Button
+                variant="soft"
+                onClick={handleNext}
+              >
+                Next
+                <RiArrowRightLine />
+              </Button>
+            </Flex>
+          </>
+        ) : (
+          <Flex direction="column" gap="4">
+            <Text size="5" weight="bold">
+              These therapists may be a great match for you.
+            </Text>
+            <Text size="3" color="gray">
+              Take your time exploring your options — when you're ready,
+              book an appointment to get started.
+            </Text>
+          </Flex>
+        )}
         <Box mt="8">
           <Therapists members={matchingMembers} />
         </Box>
