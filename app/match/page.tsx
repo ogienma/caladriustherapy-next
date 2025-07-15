@@ -14,7 +14,7 @@ import {
   IconButton,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
-import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
+import { RiArrowLeftLine, RiArrowRightLine, RiCalendarCheckLine, RiMailSendLine } from "@remixicon/react";
 import useSWR from "swr";
 import Image from "next/image";
 import { Therapists } from "@/app/components/Therapists";
@@ -282,12 +282,22 @@ export default function MatchPage() {
         ) : (
           <Flex direction="column" gap="4">
             <Text size="5" weight="bold">
-              These therapists may be a great match for you.
+              These therapists may be a great match.
             </Text>
             <Text size="3" color="gray">
-              Take your time exploring your options — when you're ready,
-              book an appointment to get started.
+              Take your time exploring your options — when you're ready, <a href="https://caladrius.clientsecure.me/" target="_blank" rel="noopener noreferrer">book an appointment</a> to get started, or <a href="mailto:hello@caladriustherapy.com">email us</a> to learn more.
             </Text>
+            <Flex direction="row" gap="3">
+              <Button variant="solid" onClick={() => window.open("https://caladrius.clientsecure.me/", "_blank")}> 
+                <RiCalendarCheckLine size={15}  />
+                Book appointment
+              </Button>
+              <Button variant="soft" onClick={() => window.open("mailto:hello@caladriustherapy.com")}> 
+                <RiMailSendLine size={15} />
+                Get in touch
+              </Button>
+            </Flex>
+
           </Flex>
         )}
         <Box mt="8">
