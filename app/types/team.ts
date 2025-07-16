@@ -1,6 +1,7 @@
 export interface TeamMember {
   id: string;
   name: string;
+  slug: string;
   email: string;
   headshot?: string;
   isProvider: boolean;

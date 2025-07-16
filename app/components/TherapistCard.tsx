@@ -11,7 +11,8 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
 
   return (
     <Box>
-      <Card>
+      <Card asChild variant="classic">
+      <a href={`https://caladriustherapy.com/about/#${therapist.slug}`}>
         <Flex gap="3" align="center" justify="between">
           <Flex gap="3" align="center">
             <Avatar
@@ -35,6 +36,7 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
             </Box>
           </Flex>
         </Flex>
+        </a>
       </Card>
     </Box>
   );

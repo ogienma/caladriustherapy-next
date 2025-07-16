@@ -82,6 +82,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     return items.map((item: any) => ({
       id: item.sys.id,
       name: item.fields.name,
+      slug: item.fields.name.toLowerCase().replace(/ /g, '-'),
       email: item.fields.email,
       gender: item.fields.gender,
       populations: item.fields.populations || [],
@@ -94,7 +95,6 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       availability: item.fields.availability || '',
     } as TeamMember));
   } catch (error) {
-    console.error('Error fetching team members:', error);
     throw error;
   }
 }
