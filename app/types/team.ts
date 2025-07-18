@@ -3,15 +3,27 @@ export interface TeamMember {
   name: string;
   slug: string;
   email: string;
-  headshot?: string;
+  headshot: string;
   isProvider: boolean;
   gender: string;
-  populations?: string[];
-  credentials?: string[];
-  appointmentModes?: string[];
-  paymentOptions?: string[];
-  specialties?: string[];
+  populations: string[];
+  credentials: string[];
+  appointmentModes: string[];
+  paymentOptions: string[];
+  specialties: string[];
   availability: string;
+  isIntakeOnly: boolean;
   // Additional fields from Provider interface
   image?: string;
-} 
+}
+
+export const DEFAULT_TEAM_MEMBER: Omit<TeamMember, 'id' | 'name' | 'slug' | 'email' | 'isProvider' | 'gender'> = {
+  headshot: '',
+  populations: [],
+  credentials: [],
+  appointmentModes: [],
+  paymentOptions: [],
+  specialties: [],
+  availability: '',
+  isIntakeOnly: false,
+}; 

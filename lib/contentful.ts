@@ -1,5 +1,5 @@
 import { createClient } from 'contentful';
-import { TeamMember } from '../app/types/team';
+import { TeamMember, DEFAULT_TEAM_MEMBER } from '../app/types/team';
 import { Asset, Entry } from 'contentful';
 
 // [
@@ -52,11 +52,31 @@ interface TeamMemberFields {
     paymentOptions: string[];
     specialties: string[];
     availability: string;
+    isIntakeOnly: boolean;
   };
 }
 
 interface TeamMemberEntry extends Entry<TeamMemberFields> {
   contentTypeId: 'teamMember';
+}
+
+function transformTeamMember(item: any): TeamMember {
+  return {
+    id: item.sys.id,
+    name: item.fields.name,
+    slug: item.fields.name.toLowerCase().replace(/ /g, '-'),
+    email: item.fields.email,
+    gender: item.fields.gender,
+    isProvider: item.fields.isProvider,
+    headshot: item.fields.headshot?.fields?.file?.url || DEFAULT_TEAM_MEMBER.headshot,
+    populations: item.fields.populations || DEFAULT_TEAM_MEMBER.populations,
+    credentials: item.fields.credentials || DEFAULT_TEAM_MEMBER.credentials,
+    appointmentModes: item.fields.appointmentModes || DEFAULT_TEAM_MEMBER.appointmentModes,
+    paymentOptions: item.fields.paymentOptions || DEFAULT_TEAM_MEMBER.paymentOptions,
+    specialties: item.fields.specialties || DEFAULT_TEAM_MEMBER.specialties,
+    availability: item.fields.availability || DEFAULT_TEAM_MEMBER.availability,
+    isIntakeOnly: item.fields.isIntakeOnly ?? DEFAULT_TEAM_MEMBER.isIntakeOnly,
+  };
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
@@ -75,25 +95,12 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         'fields.paymentOptions',
         'fields.specialties',
         'fields.availability',
+        'fields.isIntakeOnly',
       ],
       include: 1,
     });
 
-    return items.map((item: any) => ({
-      id: item.sys.id,
-      name: item.fields.name,
-      slug: item.fields.name.toLowerCase().replace(/ /g, '-'),
-      email: item.fields.email,
-      gender: item.fields.gender,
-      populations: item.fields.populations || [],
-      headshot: item.fields.headshot?.fields?.file?.url || '',
-      credentials: item.fields.credentials || [],
-      appointmentModes: item.fields.appointmentModes || [],
-      isProvider: item.fields.isProvider,
-      paymentOptions: item.fields.paymentOptions || [],
-      specialties: item.fields.specialties || [],
-      availability: item.fields.availability || '',
-    } as TeamMember));
+    return items.map(transformTeamMember);
   } catch (error) {
     throw error;
   }

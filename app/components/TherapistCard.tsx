@@ -26,7 +26,12 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
                 <Flex gap="2">
                   {therapist.name}
                   {therapist.availability.toLowerCase() === "waitlist" && (
-                    <Badge color="gray" size="1" radius="full">Waitlist</Badge>
+                      <Badge color="gray" size="1" radius="full" variant="soft">Waitlist</Badge>
+                  )}
+                  {therapist.isIntakeOnly && (
+                    <Tooltip content="" delayDuration={0}>
+                      <Badge color="gray" size="1" radius="full" variant="soft">Intake only</Badge>
+                      </Tooltip>
                   )}
                 </Flex>
               </Text>
