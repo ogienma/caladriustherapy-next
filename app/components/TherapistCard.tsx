@@ -29,9 +29,9 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
                       <Badge color="gray" size="1" radius="full" variant="soft">Waitlist</Badge>
                   )}
                   {therapist.isIntakeOnly && (
-                    <Tooltip content="" delayDuration={0}>
+                    <Tooltip content="Provides a specialized intake to determine treatment needs" delayDuration={0}>
                       <Badge color="gray" size="1" radius="full" variant="soft">Intake only</Badge>
-                      </Tooltip>
+                    </Tooltip>
                   )}
                 </Flex>
               </Text>
