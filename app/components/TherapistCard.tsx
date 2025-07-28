@@ -30,7 +30,7 @@ export default function TherapistCard({ therapist }: TherapistCardProps) {
                       <Badge color="gray" size="1" radius="full" variant="soft">Waitlist</Badge>
                       </Tooltip>
                   )}
-                  {therapist.isIntakeOnly && (
+                  {therapist.availability.toLowerCase() === "intake only" && (
                     <Tooltip content="Provides a specialized intake to determine treatment needs" delayDuration={0}>
                       <Badge color="gray" size="1" radius="full" variant="soft">Intake only</Badge>
                     </Tooltip>
