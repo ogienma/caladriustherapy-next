@@ -1,15 +1,13 @@
 questions:
-  # description: "Select the gender of the therapist you prefer."
-  # visibility: "if: {answerOf:'patient_type', in:['adult']}"
-
+  
   - id: therapist_payment_options
     title: "Which insurance or payment option would you like to use?"
     type: select
     match_key: paymentOptions
     match_mode: contains_any
     options:
-      - label: "Self-Pay / Out-of-Pocket"
-        value: "Self-Pay / Out-of-Pocket"
+      - label: "Self-pay / out-of-pocket"
+        value: "Self-pay / out-of-pocket"
         skip_filter: true
       - label: "Aetna"
         value: "Aetna"
@@ -33,8 +31,8 @@ questions:
         value: "UnitedHealthcare Community Plan"
       - label: "WellCare"
         value: "WellCare"
-      - label: "Other Insurance (Out-of-Network)"
-        value: "Other Insurance (Out-of-Network)"
+      - label: "Other insurance (out-of-network)"
+        value: "Other insurance (out-of-network)"
         skip_filter: true
 
   - id: therapist_populations
@@ -43,11 +41,11 @@ questions:
     match_key: populations
     match_mode: contains_any
     options:
-      - label: "Young Child (5 or younger)"
+      - label: "Young child (5 or younger)"
         value: "Young Child (5 or younger)"
       - label: "Child (6-10)"
         value: "Child (6-10)"
-      - label: "Young Adolescent (11-13)"
+      - label: "Young adolescent (11-13)"
         value: "Young Adolescent (11-13)"
       - label: "Teen (14-17)"
         value: "Teen (14-17)"
