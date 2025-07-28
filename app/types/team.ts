@@ -12,7 +12,6 @@ export interface TeamMember {
   paymentOptions: string[];
   specialties: string[];
   availability: string;
-  isIntakeOnly: boolean;
   // Additional fields from Provider interface
   image?: string;
 }
@@ -24,6 +23,5 @@ export const DEFAULT_TEAM_MEMBER: Omit<TeamMember, 'id' | 'name' | 'slug' | 'ema
   appointmentModes: [],
   paymentOptions: [],
   specialties: [],
-  availability: '',
-  isIntakeOnly: false,
+  availability: ''
 }; 

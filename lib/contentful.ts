@@ -52,7 +52,6 @@ interface TeamMemberFields {
     paymentOptions: string[];
     specialties: string[];
     availability: string;
-    isIntakeOnly: boolean;
   };
 }
 
@@ -75,7 +74,6 @@ function transformTeamMember(item: any): TeamMember {
     paymentOptions: item.fields.paymentOptions || DEFAULT_TEAM_MEMBER.paymentOptions,
     specialties: item.fields.specialties || DEFAULT_TEAM_MEMBER.specialties,
     availability: item.fields.availability || DEFAULT_TEAM_MEMBER.availability,
-    isIntakeOnly: item.fields.isIntakeOnly ?? DEFAULT_TEAM_MEMBER.isIntakeOnly,
   };
 }
 
@@ -95,7 +93,6 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         'fields.paymentOptions',
         'fields.specialties',
         'fields.availability',
-        'fields.isIntakeOnly',
       ],
       include: 1,
     });
