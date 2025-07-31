@@ -19,8 +19,6 @@ questions:
         value: "Blue Cross Blue Shield (BCBS)"
       - label: "Carolina Complete Health"
         value: "Carolina Complete Health"
-      - label: "Cigna"
-        value: "Cigna"
       - label: "Healthy Blue"
         value: "Healthy Blue"
       - label: "Partners Health Management"
