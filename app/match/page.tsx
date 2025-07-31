@@ -71,6 +71,10 @@ export default function MatchPage() {
         return false;
       }
 
+      if (member.availability === "intake only") {
+        return true;
+      }
+
       return questions.every((question) => {
         const answer = newAnswers[question.id];
         if (!answer) {
